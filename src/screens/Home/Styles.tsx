@@ -1,7 +1,9 @@
 import styled from 'styled-components/native'
 
-export const StyledView = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
+export const StyledContent = styled.View`
+  padding: ${({ theme }) => theme.spacing[2]};
+`
+
+export const StyledViewCards = styled.View`
+  padding-top: ${({ theme }) => theme.spacing[4]};
 `

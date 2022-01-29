@@ -1,47 +1,47 @@
 import * as React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
-import { RootStackParams } from './src/types/RootStackParams'
-
-import Home from './src/screens//Home'
-import RecurrenceRequirements from './src/screens/RecurrenceRequirements'
+import AppLoading from 'expo-app-loading'
+import {
+  useFonts,
+  Nunito_400Regular,
+  Nunito_500Medium,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+} from '@expo-google-fonts/nunito'
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider } from 'styled-components/native'
 
+import Stacks from './src/stacks'
 import theme from './src/theme'
 
-import SessionTypes from './src/screens/SessionTypes'
-import Categories from './src/screens/Categories'
-import Results from './src/screens/Results'
-import Question from './src/screens/Question'
-
-const Stack = createNativeStackNavigator<RootStackParams>()
+const navigationTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: theme.background.primary,
+    card: theme.background.primary,
+  },
+}
 
 function App() {
+  const [fontsLoaded] = useFonts({
+    Nunito_400Regular,
+    Nunito_500Medium,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+  })
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            headerBackTitleVisible: false,
-            headerShadowVisible: false,
-            title: null,
-            headerStyle: { backgroundColor: theme.background.primary },
-            contentStyle: { backgroundColor: theme.background.primary },
-          }}
-        >
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen
-            name="RecurrenceRequirements"
-            component={RecurrenceRequirements}
-          />
-          <Stack.Screen name="Categories" component={Categories} />
-          <Stack.Screen name="SessionTypes" component={SessionTypes} />
-          <Stack.Screen name="Question" component={Question} />
-          <Stack.Screen name="Results" component={Results} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer theme={navigationTheme}>
+          <Stacks />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </ThemeProvider>
   )
 }

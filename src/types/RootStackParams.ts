@@ -1,6 +1,6 @@
 export type RootStackParams = {
   Categories: undefined
-  FaaExam: undefined
+  Examination: undefined
   Home: undefined
   Question: undefined
   RecurrenceRequirements: undefined

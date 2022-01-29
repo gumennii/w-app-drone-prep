@@ -1,20 +1,31 @@
 import React from 'react'
-import { Button, Text } from 'react-native'
 
-import { useNavigation } from '../../hooks'
-import { StyledView } from './Styles'
+import { Text, Container } from '../../components'
+import { StyledContent } from './Styles'
+import Cards from './Cards'
 
 const Home = () => {
-  const navigation = useNavigation()
-
   return (
-    <StyledView>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Session"
-        onPress={() => navigation.navigate('SessionTypes')}
-      />
-    </StyledView>
+    <Container>
+      <StyledContent>
+        <Text variant="h1" weight="bold">
+          Hello 👋 Pilot
+        </Text>
+        <Text variant="h2" weight="bold">
+          How do{' '}
+          <Text variant="h2" weight="bold" color="yellow">
+            you
+          </Text>
+        </Text>
+        <Text variant="h2" weight="bold">
+          want to{' '}
+          <Text variant="h2" weight="bold" color="blue">
+            practice today?
+          </Text>
+        </Text>
+      </StyledContent>
+      <Cards />
+    </Container>
   )
 }
 

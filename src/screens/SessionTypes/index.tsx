@@ -1,14 +1,14 @@
 import React from 'react'
-import { Button, Text } from 'react-native'
+import { Button } from 'react-native'
+import { Text, Container } from '../../components'
 
 import { useNavigation } from '../../hooks'
-import { StyledView } from './Styles'
 
 const SessionTypes = () => {
   const navigation = useNavigation()
 
   return (
-    <StyledView>
+    <Container>
       <Text>What type of session would you like to start?</Text>
       <Text>Specific Categories</Text>
       <Text>Random Questions</Text>
@@ -18,7 +18,7 @@ const SessionTypes = () => {
         title="Specific Categories"
         onPress={() => navigation.navigate('Categories')}
       />
-    </StyledView>
+    </Container>
   )
 }
 

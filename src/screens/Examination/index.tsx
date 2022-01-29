@@ -5,12 +5,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { RootStackParams } from '../../types/RootStackParams'
 
-const FaaExam = () => {
+const Examination = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParams>>()
 
   return (
     <View style={styles.container}>
-      <Text>FaaExam Screen</Text>
+      <Text>Examination Screen</Text>
       <Button
         title="Go to Session"
         onPress={() => navigation.navigate('SessionTypes')}
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default FaaExam
+export default Examination
