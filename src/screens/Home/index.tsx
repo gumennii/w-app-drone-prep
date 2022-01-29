@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { Text, Container } from '../../components'
-import { StyledContent } from './Styles'
+import { StyledHeader } from './Styles'
 import Cards from './Cards'
 
 const Home = () => {
   return (
     <Container>
-      <StyledContent>
+      <StyledHeader>
         <Text variant="h1" weight="bold">
           Hello 👋 Pilot
         </Text>
@@ -23,7 +23,7 @@ const Home = () => {
             practice today?
           </Text>
         </Text>
-      </StyledContent>
+      </StyledHeader>
       <Cards />
     </Container>
   )

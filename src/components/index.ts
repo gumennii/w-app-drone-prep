@@ -5,5 +5,6 @@ import Card from './Card'
 import Space from './Space'
 import Icon from './Icon'
 import Back from './Back'
+import SessionType from './SessionType'
 
-export { Back, Button, Container, Card, Icon, Space, Text }
+export { Back, Button, SessionType, Container, Card, Icon, Space, Text }

@@ -71,7 +71,7 @@ const theme = {
       h1: '55px',
       h2: '26px',
       h3: '24px',
-      h4: '18px',
+      h4: '20px',
       h5: '16px',
       h6: '14px',
       body1: '20px',
@@ -97,7 +97,7 @@ const theme = {
     },
     padding: {
       medium: spacing[3],
-      large: spacing[8],
+      large: spacing[6],
     },
   },
   borderRadius: {

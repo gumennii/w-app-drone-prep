@@ -19,7 +19,7 @@ export type Props = {
 
 const textSize = {
   small: 'h5',
-  medium: 'h4',
+  large: 'h4',
 }
 
 const Button: FC<Props> = ({
@@ -37,7 +37,7 @@ const Button: FC<Props> = ({
       fullWidth={fullWidth}
       onPress={onPress}
     >
-      <StyledText variant={textSize[variant]} weight="bold" color="white">
+      <StyledText variant={textSize[size]} weight="bold" color="white">
         {title}
       </StyledText>
       <Icon icon={icon} color="white" />

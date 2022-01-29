@@ -4,13 +4,13 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 import { useNavigation } from '../../hooks'
 import { Button, Text, Card, Space } from '../../components'
-import { StyledViewCards } from './Styles'
+import { StyledCards } from './Styles'
 
 const Cards = () => {
   const navigation = useNavigation()
 
   return (
-    <StyledViewCards>
+    <StyledCards>
       <Card variant="blue">
         <Text variant="h3" weight="bold" color="white" mb={2}>
           New Study Session
@@ -40,7 +40,7 @@ const Cards = () => {
           onPress={() => navigation.navigate('Examination')}
         />
       </Card>
-    </StyledViewCards>
+    </StyledCards>
   )
 }
 
