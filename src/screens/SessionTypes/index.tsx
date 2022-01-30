@@ -4,10 +4,10 @@ import { faDice } from '@fortawesome/free-solid-svg-icons'
 import { faFlag } from '@fortawesome/free-solid-svg-icons'
 import { faBomb } from '@fortawesome/free-solid-svg-icons'
 
-import { Button, Text, Container, SessionType, Space } from '../../components'
+import { Text, Container, SessionType, Space, Fab } from '../../components'
 
 import { useNavigation } from '../../hooks'
-import { StyledHeader, StyledCategories, StyledActions } from './Styles'
+import { StyledHeader, StyledCategories } from './Styles'
 
 const SessionTypes = () => {
   const navigation = useNavigation()
@@ -46,14 +46,7 @@ const SessionTypes = () => {
         />
       </StyledCategories>
 
-      <StyledActions>
-        <Button
-          title="Continue"
-          size="large"
-          fullWidth
-          onPress={() => navigation.navigate('Categories')}
-        />
-      </StyledActions>
+      <Fab title="Continue" onPress={() => navigation.navigate('Categories')} />
     </Container>
   )
 }

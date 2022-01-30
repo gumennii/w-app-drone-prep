@@ -3,7 +3,16 @@ import { TextProps } from 'react-native'
 
 import { StyledText } from './Styles'
 
-type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2'
+type Variant =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'body1'
+  | 'body2'
+  | 'caption'
 type Weight = 'regular' | 'medium' | 'semiBold' | 'bold'
 type Color = 'primary' | 'secondary' | 'yellow' | 'blue' | 'white' | string
 

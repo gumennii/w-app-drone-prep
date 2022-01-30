@@ -1,10 +1,9 @@
 import React from 'react'
-import { Button } from 'react-native'
 
 import { useNavigation } from '../../hooks'
-import { StyledHeader } from './Styles'
+import { Text, Container, Category, Space, Fab } from '../../components'
 
-import { Text, Container } from '../../components'
+import { StyledHeader, StyledCategories } from './Styles'
 
 const Categories = () => {
   const navigation = useNavigation()
@@ -16,10 +15,13 @@ const Categories = () => {
           Select specific categories to study and review
         </Text>
       </StyledHeader>
-      <Button
-        title="Go to Session"
-        onPress={() => navigation.navigate('Question')}
-      />
+      <StyledCategories>
+        <Category title="Aerodynamic Forces" selected={false} />
+        <Space size={2} />
+        <Category title="Aircraft Performance" selected={true} />
+      </StyledCategories>
+
+      <Fab title="Continue" onPress={() => navigation.navigate('Question')} />
     </Container>
   )
 }

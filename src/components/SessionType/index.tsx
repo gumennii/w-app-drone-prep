@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { TouchableHighlight } from 'react-native'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import Icon from '../Icon'
 
@@ -35,25 +36,30 @@ const SessionType: FC<Props> = ({ title, description, icon, selected }) => {
     : theme.color.text.secondary
 
   return (
-    <StyledSessionType selected={selected}>
-      <StyledSessionTypeMedia>
-        <StyledIconContainer selected={selected}>
-          <Icon
-            icon={icon}
-            size={adjustIconSize[iconName] || 20}
-            color={primaryColors}
-          />
-        </StyledIconContainer>
-      </StyledSessionTypeMedia>
-      <StyledSessionTypeContent>
-        <Text variant="h4" weight="semiBold" mb={2} color={primaryColors}>
-          {title}
-        </Text>
-        <Text variant="body2" color={secondaryColors}>
-          {description}
-        </Text>
-      </StyledSessionTypeContent>
-    </StyledSessionType>
+    <TouchableHighlight
+      onPress={() => alert('Pressed!')}
+      underlayColor={theme.background.primary}
+    >
+      <StyledSessionType selected={selected}>
+        <StyledSessionTypeMedia>
+          <StyledIconContainer selected={selected}>
+            <Icon
+              icon={icon}
+              size={adjustIconSize[iconName] || 20}
+              color={primaryColors}
+            />
+          </StyledIconContainer>
+        </StyledSessionTypeMedia>
+        <StyledSessionTypeContent>
+          <Text variant="h4" weight="semiBold" mb={2} color={primaryColors}>
+            {title}
+          </Text>
+          <Text variant="body2" color={secondaryColors}>
+            {description}
+          </Text>
+        </StyledSessionTypeContent>
+      </StyledSessionType>
+    </TouchableHighlight>
   )
 }
 

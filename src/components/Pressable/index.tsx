@@ -29,8 +29,10 @@ const mergePressableStyles: MergePressableStylesFn = (style, pressStyle) => {
   return ({ pressed }) => (pressed ? [style, pressStyle] : style)
 }
 
-export const Pressable: React.FC<PressableProps> = ({
+const Pressable: React.FC<PressableProps> = ({
   style,
   pressStyle,
   ...props
 }) => <RNPressable style={mergePressableStyles(style, pressStyle)} {...props} />
+
+export default Pressable

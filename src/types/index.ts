@@ -40,7 +40,8 @@ export type Question = {
 }
 
 export type QuestionOption = {
-  correct: boolean
+  isCorrect?: boolean
+  isSelected?: boolean
   value: string
-  description: string
+  text: string
 }

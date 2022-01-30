@@ -8,6 +8,11 @@ const color = {
     main: '#FBD051',
     dark: '#F4B623',
   },
+  error: {
+    light: '#FFE9DD',
+    main: '#F86051',
+    dark: '#F7412F',
+  },
   text: {
     primary: '#1B143F',
     secondary: '#494365',
@@ -21,7 +26,7 @@ const color = {
   },
   green: {
     main: '#7EAD7F',
-    light: '#D8F8D9',
+    light: '#F4FFF1',
   },
   yellow: {
     main: '#FBD051',
@@ -66,6 +71,7 @@ const theme = {
       h6: '14px',
       body1: '16px',
       body2: '14px',
+      caption: '12px',
     },
     lineHeight: {
       h1: '55px',
@@ -76,6 +82,7 @@ const theme = {
       h6: '14px',
       body1: '20px',
       body2: '20px',
+      caption: '14px',
     },
     weight: {
       regular: 'Nunito_400Regular',
