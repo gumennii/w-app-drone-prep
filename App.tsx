@@ -8,11 +8,11 @@ import {
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider } from 'styled-components/native'
 
 import Stacks from './src/stacks'
 import theme from './src/theme'
+import { QuestionsProvider } from './src/contexts/Questions'
 
 const navigationTheme = {
   ...DefaultTheme,
@@ -37,11 +37,11 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaProvider>
+      <QuestionsProvider>
         <NavigationContainer theme={navigationTheme}>
           <Stacks />
         </NavigationContainer>
-      </SafeAreaProvider>
+      </QuestionsProvider>
     </ThemeProvider>
   )
 }

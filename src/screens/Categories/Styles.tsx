@@ -8,3 +8,7 @@ export const StyledHeader = styled.View`
 export const StyledCategories = styled.View`
   padding-top: ${({ theme }) => theme.spacing[4]};
 `
+
+export const StyledCategoryContainer = styled.View`
+  margin-bottom: ${({ theme }) => theme.spacing[1]};
+`

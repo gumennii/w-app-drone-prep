@@ -20,20 +20,11 @@ export type Category = {
   title: string
   description: string
   topic: string
-  questionsAmount: number
-}
-
-export type Topic = {
-  id: string
-  title: string
-  description: string
-  questionsAmount: number
 }
 
 export type Question = {
   id: string
   category: Category
-  topic: Topic
   text: string
   description: string
   options: QuestionOption[]
