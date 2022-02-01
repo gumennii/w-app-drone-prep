@@ -4,9 +4,11 @@ import Card from './Card'
 import Category from './Category'
 import Container from './Container'
 import Fab from './Fab'
+import Flag from './Flag'
 import Icon from './Icon'
 import Option from './Option'
 import Pressable from './Pressable'
+import Progress from './Progress'
 import SessionType from './SessionType'
 import Space from './Space'
 import Text from './Text'
@@ -18,9 +20,11 @@ export {
   Container,
   Card,
   Fab,
+  Flag,
   Icon,
   Option,
   Pressable,
+  Progress,
   SessionType,
   Space,
   Text,

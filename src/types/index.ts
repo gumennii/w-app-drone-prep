@@ -1,3 +1,5 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+
 export type User = {
   history: Session[]
 }
@@ -15,24 +17,37 @@ export type Session = {
   }
 }
 
-export type Category = {
-  id: string
+export type Study = {
   title: string
   description: string
-  topic: string
+  icon: IconProp
+  selected?: boolean
 }
 
 export type Question = {
   id: string
-  category: Category
-  text: string
-  description: string
-  options: QuestionOption[]
+  group: number
+  category: number
+  question_text: string
+  answers: Answer[]
 }
 
-export type QuestionOption = {
-  isCorrect?: boolean
-  isSelected?: boolean
-  value: string
-  text: string
+export type Answer = {
+  id: number
+  correct: boolean
+  answer_text: string
+  explanation: string
+}
+
+export type Group = {
+  id: number
+  name: string
+  description: string
+}
+
+export type Category = {
+  id: number
+  group: number
+  description: string
+  selected?: boolean
 }

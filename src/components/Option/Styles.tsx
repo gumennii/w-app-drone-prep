@@ -31,10 +31,10 @@ export const StyledText = styled(Text)`
 
 export const StyledCorrectAnswer = styled.View`
   position: absolute;
-  padding: ${({ theme }) => `${theme.spacing[1]} ${theme.spacing[2]}`};
-  border-radius: ${({ theme }) => theme.borderRadius.small};
+  padding: 2px 4px;
+  border-radius: 4px;
   background: ${({ theme }) => theme.color.green.main};
-  top: ${({ theme }) => `-${theme.spacing[4]}`};
+  top: ${({ theme }) => `-${theme.spacing[3]}`};
   left: ${({ theme }) => theme.spacing[2]};
 `
 

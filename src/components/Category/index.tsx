@@ -4,21 +4,19 @@ import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
 
 import Icon from '../Icon'
-
 import Text from '../Text'
+import theme from '../../theme'
+import { Category as CategoryType } from '../../types'
+
 import {
   StyledCategory,
   StyledCategoryMedia,
   StyledCategoryContent,
 } from './Styles'
-import theme from '../../theme'
 
-export type Props = {
-  title: string
-  selected?: boolean
-} & TouchableHighlightProps
+export type Props = CategoryType & TouchableHighlightProps
 
-const Category: FC<Props> = ({ title, selected }) => {
+const Category: FC<Props> = ({ description, selected, onPress }) => {
   const icon = selected ? faCheckSquare : faSquare
   const primaryColors = selected
     ? theme.color.common.white
@@ -26,7 +24,7 @@ const Category: FC<Props> = ({ title, selected }) => {
 
   return (
     <TouchableHighlight
-      onPress={() => alert('Pressed!')}
+      onPress={onPress}
       underlayColor={theme.background.primary}
     >
       <StyledCategory selected={selected}>
@@ -35,7 +33,7 @@ const Category: FC<Props> = ({ title, selected }) => {
         </StyledCategoryMedia>
         <StyledCategoryContent>
           <Text variant="body2" color={primaryColors}>
-            {title}
+            {description}
           </Text>
         </StyledCategoryContent>
       </StyledCategory>

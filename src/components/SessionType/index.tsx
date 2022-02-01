@@ -1,30 +1,32 @@
 import React, { FC } from 'react'
-import { TouchableHighlight } from 'react-native'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import Icon from '../Icon'
+import { TouchableHighlight, TouchableHighlightProps } from 'react-native'
 
+import { Study as StudyType } from '../../types'
+import Icon from '../Icon'
 import Text from '../Text'
+import theme from '../../theme'
+
 import {
   StyledSessionType,
   StyledSessionTypeMedia,
   StyledSessionTypeContent,
   StyledIconContainer,
 } from './Styles'
-import theme from '../../theme'
 
-export type Props = {
-  title: string
-  description: string
-  icon: IconProp
-  selected?: boolean
-}
+export type Props = StudyType & TouchableHighlightProps
 
 const adjustIconSize = {
   flag: 16,
   dice: 22,
 }
 
-const SessionType: FC<Props> = ({ title, description, icon, selected }) => {
+const SessionType: FC<Props> = ({
+  title,
+  description,
+  icon,
+  selected,
+  onPress,
+}) => {
   const { iconName } = icon
 
   const primaryColors = selected
@@ -37,7 +39,7 @@ const SessionType: FC<Props> = ({ title, description, icon, selected }) => {
 
   return (
     <TouchableHighlight
-      onPress={() => alert('Pressed!')}
+      onPress={onPress}
       underlayColor={theme.background.primary}
     >
       <StyledSessionType selected={selected}>

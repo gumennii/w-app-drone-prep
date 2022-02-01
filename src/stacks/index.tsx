@@ -10,12 +10,18 @@ import Results from '../screens/Results'
 import Question from '../screens/Question'
 import RecurrenceRequirements from '../screens/RecurrenceRequirements'
 
-import { Back } from '../components'
+import { Back, Progress, Flag } from '../components'
 
 const Stack = createNativeStackNavigator<RootStackParams>()
 
 const options = {
   headerLeft: () => <Back />,
+}
+
+const questionOptions = {
+  ...options,
+  headerTitle: () => <Progress />,
+  headerRight: () => <Flag />,
 }
 
 const Stacks = () => {
@@ -43,7 +49,11 @@ const Stacks = () => {
         component={SessionTypes}
         options={options}
       />
-      <Stack.Screen name="Question" component={Question} options={options} />
+      <Stack.Screen
+        name="Question"
+        component={Question}
+        options={questionOptions}
+      />
       <Stack.Screen name="Results" component={Results} options={options} />
     </Stack.Navigator>
   )

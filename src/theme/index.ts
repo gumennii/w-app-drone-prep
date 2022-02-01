@@ -82,7 +82,7 @@ const theme = {
       h6: '14px',
       body1: '20px',
       body2: '20px',
-      caption: '14px',
+      caption: '16px',
     },
     weight: {
       regular: 'Nunito_400Regular',
