@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 
 import { useNavigation, useQuestions } from '../../hooks'
-import { Text, Container, Option, Space, Fab } from '../../components'
+import { Container, Text, Option, Space, Fab } from '../../components'
 import { question_db } from '../../data'
 
 import { StyledHeader, StyledOptions } from './Styles'
@@ -14,15 +14,20 @@ const Question: FC = () => {
 
   const [selectedAnswer, setSelectedAnswer] = useState<number>()
 
+  const isLastQuestion = activeQuestionIndex === questions.length - 1
+  const buttonLabel = isLastQuestion ? 'Go to results' : 'Continue'
+
   const handleNext = () => {
-    if (activeQuestionIndex > questions.length) {
-      navigation.navigate('Categories')
-    }
+    setSelectedAnswer(undefined)
+
     dispatch({
       type: 'set_active_question_index',
       payload: activeQuestionIndex + 1,
     })
-    setSelectedAnswer(undefined)
+  }
+
+  const handleGoToResults = () => {
+    return navigation.navigate('Results')
   }
 
   const handleSelect = (id: number) => {
@@ -50,6 +55,7 @@ const Question: FC = () => {
                   onPress={() => handleSelect(id)}
                   isCorrect={correct}
                   isSelected={selectedAnswer === id}
+                  isAnswered={selectedAnswer}
                 />
                 <Space size={2} />
               </View>
@@ -58,7 +64,13 @@ const Question: FC = () => {
         </StyledOptions>
       </ScrollView>
 
-      {selectedAnswer && <Fab title="Continue" onPress={() => handleNext()} />}
+      {selectedAnswer && !isLastQuestion && (
+        <Fab title={buttonLabel} onPress={handleNext} />
+      )}
+
+      {selectedAnswer && isLastQuestion && (
+        <Fab title={buttonLabel} onPress={handleGoToResults} />
+      )}
     </Container>
   )
 }

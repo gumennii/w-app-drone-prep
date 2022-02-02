@@ -1,11 +1,12 @@
 import React from 'react'
+import * as Haptics from 'expo-haptics'
 import { View } from 'react-native'
 
 import { useNavigation, useQuestions } from '../../hooks'
 import { Text, Container, Category, Fab, Space } from '../../components'
 import { category_db, categories_ids } from '../../data'
 
-import { StyledHeader, StyledScrollView } from './Styles'
+import { StyledHeader, StyledScrollView, StyledCategories } from './Styles'
 
 const Categories = () => {
   const navigation = useNavigation()
@@ -14,6 +15,7 @@ const Categories = () => {
   const { selectedCategories } = state
 
   const handleSelected = (id: number) => {
+    Haptics.selectionAsync()
     if (selectedCategories.includes(id)) {
       const filtered = selectedCategories.filter(el => el !== id)
       dispatch({ type: 'set_categories', payload: filtered })
@@ -36,21 +38,23 @@ const Categories = () => {
           </Text>
         </StyledHeader>
 
-        {categories_ids.map(item => {
-          const { id, description, group } = category_db[item]
-          return (
-            <View key={id}>
-              <Category
-                id={id}
-                group={group}
-                description={description}
-                selected={selectedCategories.includes(id)}
-                onPress={() => handleSelected(id)}
-              />
-              <Space size={1} />
-            </View>
-          )
-        })}
+        <StyledCategories>
+          {categories_ids.map(item => {
+            const { id, description, group } = category_db[item]
+            return (
+              <View key={id}>
+                <Category
+                  id={id}
+                  group={group}
+                  description={description}
+                  selected={selectedCategories.includes(id)}
+                  onPress={() => handleSelected(id)}
+                />
+                <Space size={1} />
+              </View>
+            )
+          })}
+        </StyledCategories>
       </StyledScrollView>
 
       {selectedCategories.length > 0 && (

@@ -39,6 +39,9 @@ const questionsReducer = (state: State, action: Action): State => {
       const filteredQuestions = filterQuestions(state.selectedCategories)
       return { ...state, questions: filteredQuestions }
     }
+    case 'reset': {
+      return resetState(initialState)
+    }
     default: {
       throw new Error(`Unhandled action type: ${action}`)
     }

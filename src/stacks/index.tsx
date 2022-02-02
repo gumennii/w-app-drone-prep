@@ -10,7 +10,8 @@ import Results from '../screens/Results'
 import Question from '../screens/Question'
 import RecurrenceRequirements from '../screens/RecurrenceRequirements'
 
-import { Back, Progress, Flag } from '../components'
+import { Back, Progress, Close, Flag } from '../components'
+import { useQuestions } from '../hooks'
 
 const Stack = createNativeStackNavigator<RootStackParams>()
 
@@ -19,12 +20,18 @@ const options = {
 }
 
 const questionOptions = {
-  ...options,
+  headerLeft: () => <Close />,
   headerTitle: () => <Progress />,
   headerRight: () => <Flag />,
 }
 
+const resultsOptions = {
+  headerLeft: () => <Close />,
+}
+
 const Stacks = () => {
+  const { dispatch } = useQuestions()
+
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -34,15 +41,14 @@ const Stacks = () => {
         title: null,
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen
-        name="RecurrenceRequirements"
-        component={RecurrenceRequirements}
-      />
-      <Stack.Screen
-        name="Categories"
-        component={Categories}
-        options={options}
+        name="Home"
+        component={Home}
+        listeners={() => ({
+          focus: () => {
+            dispatch({ type: 'reset' })
+          },
+        })}
       />
       <Stack.Screen
         name="SessionTypes"
@@ -50,11 +56,40 @@ const Stacks = () => {
         options={options}
       />
       <Stack.Screen
+        name="Categories"
+        component={Categories}
+        options={options}
+        listeners={() => ({
+          beforeRemove: () => {
+            dispatch({ type: 'set_categories', payload: [] })
+          },
+        })}
+      />
+
+      <Stack.Screen
         name="Question"
         component={Question}
         options={questionOptions}
+        listeners={() => ({
+          beforeRemove: () => {
+            dispatch({ type: 'reset' })
+          },
+        })}
       />
-      <Stack.Screen name="Results" component={Results} options={options} />
+      <Stack.Screen
+        name="Results"
+        component={Results}
+        options={resultsOptions}
+        listeners={() => ({
+          beforeRemove: () => {
+            dispatch({ type: 'reset' })
+          },
+        })}
+      />
+      <Stack.Screen
+        name="RecurrenceRequirements"
+        component={RecurrenceRequirements}
+      />
     </Stack.Navigator>
   )
 }

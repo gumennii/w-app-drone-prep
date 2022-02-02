@@ -1,4 +1,5 @@
 import React from 'react'
+import * as Haptics from 'expo-haptics'
 import { ScrollView } from 'react-native'
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons'
 import { faDice } from '@fortawesome/free-solid-svg-icons'
@@ -16,6 +17,7 @@ const SessionTypes = () => {
   const { selectedSessionType } = state
 
   const handleSelected = (id: number) => {
+    Haptics.selectionAsync()
     dispatch({ type: 'set_session_type', payload: id })
   }
 

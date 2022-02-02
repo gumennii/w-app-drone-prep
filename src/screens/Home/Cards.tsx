@@ -1,10 +1,13 @@
 import React from 'react'
-
+import { Image } from 'react-native'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 import { useNavigation } from '../../hooks'
 import { Button, Text, Card, Space } from '../../components'
-import { StyledCards } from './Styles'
+import { StyledCards, StyledImageView } from './Styles'
+
+import SvgComponentDoc from '../../assets/svg/DocSvg'
+import SvgComponentTrophy from '../../assets/svg/TrophySvg'
 
 const Cards = () => {
   const navigation = useNavigation()
@@ -24,6 +27,9 @@ const Cards = () => {
           icon={faAngleRight}
           onPress={() => navigation.navigate('SessionTypes')}
         />
+        <StyledImageView>
+          <SvgComponentDoc />
+        </StyledImageView>
       </Card>
       <Space size={2} />
       <Card variant="yellow">
@@ -39,6 +45,9 @@ const Cards = () => {
           icon={faAngleRight}
           onPress={() => navigation.navigate('Examination')}
         />
+        <StyledImageView>
+          <SvgComponentTrophy />
+        </StyledImageView>
       </Card>
     </StyledCards>
   )

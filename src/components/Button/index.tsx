@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { TouchableHighlightProps } from 'react-native'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import Icon from '../Icon'
-import { StyledTouchableOpacity, StyledButton, StyledText } from './Styles'
+import { StyledButton, StyledText } from './Styles'
 
 type Variant = 'primary' | 'secondary'
 type Size = 'small' | 'medium' | 'large'
@@ -30,14 +30,17 @@ const Button: FC<Props> = ({
   onPress,
 }) => {
   return (
-    <StyledTouchableOpacity activeOpacity={0.9} onPress={onPress}>
-      <StyledButton variant={variant} size={size} fullWidth={fullWidth}>
-        <StyledText variant={textSize[size]} weight="bold" color="white">
-          {title}
-        </StyledText>
-        <Icon icon={icon} color="white" />
-      </StyledButton>
-    </StyledTouchableOpacity>
+    <StyledButton
+      variant={variant}
+      size={size}
+      fullWidth={fullWidth}
+      onPress={onPress}
+    >
+      <StyledText variant={textSize[size]} weight="bold" color="white">
+        {title}
+      </StyledText>
+      <Icon icon={icon} color="white" />
+    </StyledButton>
   )
 }
 

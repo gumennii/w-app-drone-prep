@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import * as Haptics from 'expo-haptics'
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
 import Text from '../Text'
@@ -14,14 +15,21 @@ import {
 const Option: FC<QuestionOption & TouchableOpacityProps> = ({
   isCorrect,
   isSelected,
+  isAnswered,
   text,
   explanation,
   onPress,
 }) => {
   const isAnwseredCorrectly = isSelected && isCorrect
+  const isExplanationVisible = isSelected && Boolean(explanation)
+
+  const handleSelect = () => {
+    Haptics.selectionAsync()
+    return onPress(null)
+  }
 
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+    <TouchableOpacity onPress={handleSelect} activeOpacity={0.9}>
       <StyledOption isCorrect={isCorrect} isSelected={isSelected}>
         {isAnwseredCorrectly && (
           <StyledCorrectAnswer>
@@ -30,8 +38,15 @@ const Option: FC<QuestionOption & TouchableOpacityProps> = ({
             </StyledCorrectAnswerText>
           </StyledCorrectAnswer>
         )}
+        {isAnswered && isCorrect && (
+          <StyledCorrectAnswer>
+            <StyledCorrectAnswerText variant="caption">
+              Correct Answer
+            </StyledCorrectAnswerText>
+          </StyledCorrectAnswer>
+        )}
         <StyledText>{text}</StyledText>
-        {isSelected && explanation && (
+        {isExplanationVisible && (
           <StyledDescription>
             <Text variant="body2">{explanation}</Text>
           </StyledDescription>

@@ -34,7 +34,7 @@ export const StyledCorrectAnswer = styled.View`
   padding: 2px 4px;
   border-radius: 4px;
   background: ${({ theme }) => theme.color.green.main};
-  top: ${({ theme }) => `-${theme.spacing[3]}`};
+  top: ${({ theme }) => `-${theme.spacing[2]}`};
   left: ${({ theme }) => theme.spacing[2]};
 `
 

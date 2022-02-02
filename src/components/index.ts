@@ -2,6 +2,7 @@ import Back from './Back'
 import Button from './Button'
 import Card from './Card'
 import Category from './Category'
+import Close from './Close'
 import Container from './Container'
 import Fab from './Fab'
 import Flag from './Flag'
@@ -19,6 +20,7 @@ export {
   Category,
   Container,
   Card,
+  Close,
   Fab,
   Flag,
   Icon,

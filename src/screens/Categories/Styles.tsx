@@ -1,15 +1,15 @@
 import styled from 'styled-components/native'
 
 export const StyledHeader = styled.View`
-  padding: ${({ theme }) => theme.spacing[2]};
+  padding-top: ${({ theme }) => theme.spacing[2]};
+  padding-left: ${({ theme }) => theme.spacing[6]};
+  padding-right: ${({ theme }) => theme.spacing[6]};
   width: 80%;
 `
 
-export const StyledScrollView = styled.ScrollView`
-  padding-top: ${({ theme }) => theme.spacing[4]};
-  padding-bottom: ${({ theme }) => theme.spacing[9]};
-`
+export const StyledScrollView = styled.ScrollView``
 
-export const StyledCategoryContainer = styled.View`
-  margin-bottom: ${({ theme }) => theme.spacing[1]};
+export const StyledCategories = styled.View`
+  padding: ${({ theme }) => theme.spacing[4]};
+  padding-bottom: 100px;
 `

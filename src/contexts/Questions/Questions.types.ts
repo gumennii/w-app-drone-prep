@@ -11,6 +11,7 @@ export type Action =
   | { type: 'set_session_type'; payload: number }
   | { type: 'set_categories'; payload: number[] }
   | { type: 'set_active_question_index'; payload: number }
+  | { type: 'reset' }
   | { type: 'set_questions' }
 
 export type Dispatch = (action: Action) => void

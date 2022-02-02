@@ -23,3 +23,4 @@ This project was started by following official guides from [Docs Expo](https://d
 
 - [Expo TypeScript guide](https://docs.expo.dev/versions/latest/guides/typescript/)
 - [Pressable wrapper for Styled Components](https://github.com/styled-components/styled-components/issues/3228)
+- [Convert SVG into React Components for Icons](https://react-svgr.com/playground/?native=true)

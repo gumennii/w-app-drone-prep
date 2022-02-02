@@ -1,25 +1,25 @@
 import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { faFlag } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import Icon from '../Icon'
 import { useNavigation } from '../../hooks'
 import { StyledButton } from './Styles'
 
-const Flag: FC = () => {
+const Close: FC = () => {
   const navigation = useNavigation()
 
-  const handleFlag = () => {
-    return navigation.goBack()
+  const handleClose = () => {
+    return navigation.navigate('Home')
   }
 
   return (
-    <TouchableOpacity onPress={handleFlag} activeOpacity={0.7}>
+    <TouchableOpacity onPress={handleClose} activeOpacity={0.7}>
       <StyledButton>
-        <Icon icon={faFlag} size={16} />
+        <Icon icon={faTimes} size={20} />
       </StyledButton>
     </TouchableOpacity>
   )
 }
 
-export default Flag
+export default Close
