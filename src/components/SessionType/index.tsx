@@ -25,38 +25,58 @@ const SessionType: FC<Props> = ({
   description,
   icon,
   selected,
+  disabled,
   onPress,
 }) => {
   const { iconName } = icon
 
-  const primaryColors = selected
-    ? theme.color.common.white
-    : theme.color.text.primary
+  const getPrimaryStyles = () => {
+    if (selected) return theme.color.common.white
+    if (disabled) return theme.color.text.secondary
 
-  const secondaryColors = selected
-    ? theme.color.common.white
-    : theme.color.text.secondary
+    return theme.color.text.primary
+  }
+
+  const getSecondaryStyles = () => {
+    if (selected) return theme.color.common.white
+    if (disabled) return theme.color.text.secondary
+
+    return theme.color.text.secondary
+  }
+
+  const handleOnPress = e => {
+    if (disabled) {
+      e.preventDefault()
+    }
+
+    return onPress(null)
+  }
 
   return (
     <TouchableHighlight
-      onPress={onPress}
+      onPress={handleOnPress}
       underlayColor={theme.background.primary}
     >
-      <StyledSessionType selected={selected}>
+      <StyledSessionType selected={selected} disabled={disabled}>
         <StyledSessionTypeMedia>
-          <StyledIconContainer selected={selected}>
+          <StyledIconContainer selected={selected} disabled={disabled}>
             <Icon
               icon={icon}
               size={adjustIconSize[iconName] || 20}
-              color={primaryColors}
+              color={getPrimaryStyles()}
             />
           </StyledIconContainer>
         </StyledSessionTypeMedia>
         <StyledSessionTypeContent>
-          <Text variant="h4" weight="semiBold" mb={2} color={primaryColors}>
+          <Text
+            variant="h4"
+            weight="semiBold"
+            mb={2}
+            color={getPrimaryStyles()}
+          >
             {title}
           </Text>
-          <Text variant="body2" color={secondaryColors}>
+          <Text variant="body2" color={getSecondaryStyles()}>
             {description}
           </Text>
         </StyledSessionTypeContent>

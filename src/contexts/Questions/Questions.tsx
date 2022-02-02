@@ -1,7 +1,6 @@
 import React, { FC, useContext, createContext, useReducer } from 'react'
 
 import { ProviderProps, ContextProps, State, Action } from './Questions.types'
-import { question_db } from '../../data'
 
 const QuestionStateContext = createContext<ContextProps | undefined>(undefined)
 
@@ -10,17 +9,13 @@ const initialState: State = {
   selectedCategories: [],
   questions: [],
   activeQuestionIndex: 0,
+  activeQuestionCorrectAnswers: 0,
+  activeQuestionIncorrectAnswers: 0,
 }
 
 // Reset State
 const resetState = (initialState: State) => {
   return initialState
-}
-
-const filterQuestions = selectedCategories => {
-  return Object.keys(question_db).filter(id =>
-    selectedCategories.includes(question_db[id].category)
-  )
 }
 
 // Reducer
@@ -35,9 +30,14 @@ const questionsReducer = (state: State, action: Action): State => {
     case 'set_active_question_index': {
       return { ...state, activeQuestionIndex: action.payload }
     }
+    case 'set_active_question_correct_answers': {
+      return { ...state, activeQuestionCorrectAnswers: action.payload }
+    }
+    case 'set_active_question_incorrect_answers': {
+      return { ...state, activeQuestionIncorrectAnswers: action.payload }
+    }
     case 'set_questions': {
-      const filteredQuestions = filterQuestions(state.selectedCategories)
-      return { ...state, questions: filteredQuestions }
+      return { ...state, questions: action.payload }
     }
     case 'reset': {
       return resetState(initialState)

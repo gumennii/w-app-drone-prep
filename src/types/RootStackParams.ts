@@ -3,6 +3,7 @@ export type RootStackParams = {
   Examination: undefined
   Home: undefined
   Question: undefined
+  Random: undefined
   RecurrenceRequirements: undefined
   Results: undefined
   SessionTypes: undefined

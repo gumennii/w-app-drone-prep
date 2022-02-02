@@ -2,18 +2,29 @@ import React, { FC, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 
 import { useNavigation, useQuestions } from '../../hooks'
-import { Container, Text, Option, Space, Fab } from '../../components'
 import { question_db } from '../../data'
+import {
+  addStorageArrayValue,
+  removeStorageArrayValue,
+  KEY_APP_ANSWERS_INCORRECT,
+} from '../../storage'
+import { Container, Text, Option, Space, Fab } from '../../components'
 
 import { StyledHeader, StyledOptions } from './Styles'
 
 const Question: FC = () => {
   const navigation = useNavigation()
   const { state, dispatch } = useQuestions()
-  const { questions, activeQuestionIndex } = state
+  const {
+    questions,
+    activeQuestionIndex,
+    activeQuestionCorrectAnswers,
+    activeQuestionIncorrectAnswers,
+  } = state
 
   const [selectedAnswer, setSelectedAnswer] = useState<number>()
 
+  const question = question_db[questions[activeQuestionIndex]]
   const isLastQuestion = activeQuestionIndex === questions.length - 1
   const buttonLabel = isLastQuestion ? 'Go to results' : 'Continue'
 
@@ -30,9 +41,28 @@ const Question: FC = () => {
     return navigation.navigate('Results')
   }
 
-  const handleSelect = (id: number) => {
+  const handleSelect = (id: number, correct: boolean) => {
     if (selectedAnswer) return
+
     setSelectedAnswer(id)
+
+    if (correct) {
+      dispatch({
+        type: 'set_active_question_correct_answers',
+        payload: activeQuestionCorrectAnswers + 1,
+      })
+      return removeStorageArrayValue(
+        KEY_APP_ANSWERS_INCORRECT,
+        String(question.id)
+      )
+    }
+
+    dispatch({
+      type: 'set_active_question_incorrect_answers',
+      payload: activeQuestionIncorrectAnswers + 1,
+    })
+
+    return addStorageArrayValue(KEY_APP_ANSWERS_INCORRECT, String(question.id))
   }
 
   return (
@@ -40,11 +70,11 @@ const Question: FC = () => {
       <ScrollView>
         <StyledHeader>
           <Text variant="h3" weight="bold" style={{ textAlign: 'center' }}>
-            {question_db[questions[activeQuestionIndex]].question_text}
+            {question.question_text}
           </Text>
         </StyledHeader>
         <StyledOptions>
-          {question_db[questions[activeQuestionIndex]].answers.map(answer => {
+          {question.answers.map(answer => {
             const { id, answer_text, correct, explanation } = answer
 
             return (
@@ -52,7 +82,7 @@ const Question: FC = () => {
                 <Option
                   text={answer_text}
                   explanation={explanation}
-                  onPress={() => handleSelect(id)}
+                  onPress={() => handleSelect(id, correct)}
                   isCorrect={correct}
                   isSelected={selectedAnswer === id}
                   isAnswered={selectedAnswer}

@@ -1,6 +1,7 @@
 import Back from './Back'
 import Button from './Button'
 import Card from './Card'
+import CardRandom from './CardRandom'
 import Category from './Category'
 import Close from './Close'
 import Container from './Container'
@@ -20,6 +21,7 @@ export {
   Category,
   Container,
   Card,
+  CardRandom,
   Close,
   Fab,
   Flag,

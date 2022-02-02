@@ -14,7 +14,7 @@ import {
   SessionType,
   Space,
 } from '../../components'
-import { useNavigation } from '../../hooks'
+import { useNavigation, useQuestions } from '../../hooks'
 import SvgComponentConfetti from '../../assets/svg/ConfettiSvg'
 import SvgComponentDoc from '../../assets/svg/DocSvg'
 
@@ -27,6 +27,12 @@ import {
 
 const Results = () => {
   const navigation = useNavigation()
+  const { state } = useQuestions()
+  const { questions, activeQuestionCorrectAnswers } = state
+
+  const total = Math.round(
+    (activeQuestionCorrectAnswers / questions.length) * 100
+  )
 
   return (
     <Container>
@@ -38,7 +44,7 @@ const Results = () => {
           <Text variant="h2" weight="bold" style={{ textAlign: 'center' }}>
             Your score is{' '}
             <Text variant="h2" weight="bold" color="blue">
-              73%
+              {total}%
             </Text>
           </Text>
           <StyledCanfettiImageView>

@@ -13,6 +13,7 @@ import { ThemeProvider } from 'styled-components/native'
 import Stacks from './src/stacks'
 import theme from './src/theme'
 import { QuestionsProvider } from './src/contexts/Questions'
+import { removeStorageData } from './src/storage'
 
 const navigationTheme = {
   ...DefaultTheme,
@@ -34,6 +35,9 @@ function App() {
   if (!fontsLoaded) {
     return <AppLoading />
   }
+
+  // removeStorageData('app-answers-incorrect')
+  // removeStorageData('app-answers-marked')
 
   return (
     <ThemeProvider theme={theme}>

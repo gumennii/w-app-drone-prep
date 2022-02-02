@@ -5,14 +5,18 @@ export type State = {
   selectedCategories?: number[]
   questions: string[]
   activeQuestionIndex: number
+  activeQuestionCorrectAnswers: number
+  activeQuestionIncorrectAnswers: number
 }
 
 export type Action =
   | { type: 'set_session_type'; payload: number }
   | { type: 'set_categories'; payload: number[] }
   | { type: 'set_active_question_index'; payload: number }
+  | { type: 'set_active_question_correct_answers'; payload: number }
+  | { type: 'set_active_question_incorrect_answers'; payload: number }
+  | { type: 'set_questions'; payload: string[] }
   | { type: 'reset' }
-  | { type: 'set_questions' }
 
 export type Dispatch = (action: Action) => void
 

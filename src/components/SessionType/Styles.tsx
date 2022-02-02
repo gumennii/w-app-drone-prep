@@ -16,6 +16,13 @@ export const StyledSessionType = styled.View<Props>`
       background-color: ${({ theme }) => theme.color.blue.main};
       border: 1px solid ${({ theme }) => theme.color.blue.main};
     `}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.7;
+      background-color: ${({ theme }) => theme.color.common.white};
+    `}
 `
 
 export const StyledSessionTypeMedia = styled.View<Props>``
@@ -40,5 +47,12 @@ export const StyledIconContainer = styled.View`
     selected &&
     css`
       background-color: ${({ theme }) => theme.color.blue.dark};
+    `}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.8;
+      background-color: ${({ theme }) => theme.background.primary};
     `}
 `

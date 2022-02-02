@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Haptics from 'expo-haptics'
 import { ScrollView } from 'react-native'
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons'
@@ -10,16 +10,56 @@ import { Text, Container, SessionType, Space, Fab } from '../../components'
 
 import { useNavigation, useQuestions } from '../../hooks'
 import { StyledHeader, StyledCategories } from './Styles'
+import {
+  getStorageData,
+  KEY_APP_ANSWERS_INCORRECT,
+  KEY_APP_ANSWERS_MARKED,
+} from '../../storage'
 
 const SessionTypes = () => {
   const navigation = useNavigation()
   const { state, dispatch } = useQuestions()
+  const [questionsMarked, setQuestionsMarked] = useState()
+  const [questionsIncorrect, setQuestionsIncorrect] = useState()
+
   const { selectedSessionType } = state
 
   const handleSelected = (id: number) => {
     Haptics.selectionAsync()
     dispatch({ type: 'set_session_type', payload: id })
   }
+
+  const handleNavigation = async () => {
+    switch (selectedSessionType) {
+      case 1:
+        return navigation.navigate('Categories')
+      case 2:
+        return navigation.navigate('Random')
+      case 3: {
+        dispatch({ type: 'set_questions', payload: questionsMarked })
+        return navigation.navigate('Question')
+      }
+      case 4: {
+        dispatch({ type: 'set_questions', payload: questionsIncorrect })
+        return navigation.navigate('Question')
+      }
+    }
+  }
+
+  const getStorage = async () => {
+    const questionsMarked = await getStorageData(KEY_APP_ANSWERS_MARKED)
+    const questionsIncorrect = await getStorageData(KEY_APP_ANSWERS_INCORRECT)
+
+    setQuestionsMarked(questionsMarked)
+    setQuestionsIncorrect(questionsIncorrect)
+  }
+
+  useEffect(() => {
+    getStorage()
+  }, [])
+
+  const isSessionTypeMarkedDisabled = Boolean(!questionsMarked)
+  const isSessionTypeIncorrectDisabled = Boolean(!questionsIncorrect)
 
   return (
     <Container>
@@ -52,6 +92,7 @@ const SessionTypes = () => {
             icon={faFlag}
             selected={selectedSessionType === 3}
             onPress={() => handleSelected(3)}
+            disabled={isSessionTypeMarkedDisabled}
           />
           <Space size={2} />
           <SessionType
@@ -60,15 +101,13 @@ const SessionTypes = () => {
             icon={faBomb}
             selected={selectedSessionType === 4}
             onPress={() => handleSelected(4)}
+            disabled={isSessionTypeIncorrectDisabled}
           />
         </StyledCategories>
       </ScrollView>
 
       {selectedSessionType && (
-        <Fab
-          title="Continue"
-          onPress={() => navigation.navigate('Categories')}
-        />
+        <Fab title="Continue" onPress={handleNavigation} />
       )}
     </Container>
   )

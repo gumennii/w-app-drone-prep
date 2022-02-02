@@ -5,6 +5,8 @@ import { View } from 'react-native'
 import { useNavigation, useQuestions } from '../../hooks'
 import { Text, Container, Category, Fab, Space } from '../../components'
 import { category_db, categories_ids } from '../../data'
+import { setStorageObjectData } from '../../storage'
+import { getFilteredQuestions } from '../../utils'
 
 import { StyledHeader, StyledScrollView, StyledCategories } from './Styles'
 
@@ -25,7 +27,10 @@ const Categories = () => {
   }
 
   const handleContinue = () => {
-    dispatch({ type: 'set_questions' })
+    const filteredQuestions = getFilteredQuestions(selectedCategories)
+    dispatch({ type: 'set_questions', payload: filteredQuestions })
+    setStorageObjectData('questions', filteredQuestions)
+
     navigation.navigate('Question')
   }
 
