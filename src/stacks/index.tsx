@@ -9,6 +9,7 @@ import Categories from '../screens/Categories'
 import Results from '../screens/Results'
 import Question from '../screens/Question'
 import Random from '../screens/Random'
+import Examination from '../screens/Examination'
 import RecurrenceRequirements from '../screens/RecurrenceRequirements'
 
 import { Back, Progress, Close, Flag } from '../components'
@@ -67,6 +68,11 @@ const Stacks = () => {
         })}
       />
       <Stack.Screen name="Random" component={Random} options={options} />
+      <Stack.Screen
+        name="Examination"
+        component={Examination}
+        options={options}
+      />
 
       <Stack.Screen
         name="Question"

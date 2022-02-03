@@ -4,13 +4,8 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
 import Text from '../Text'
 import { QuestionOption } from '../../types'
-import {
-  StyledOption,
-  StyledText,
-  StyledDescription,
-  StyledCorrectAnswer,
-  StyledCorrectAnswerText,
-} from './Styles'
+import { StyledOption, StyledText, StyledDescription } from './Styles'
+import Label from './Label'
 
 const Option: FC<QuestionOption & TouchableOpacityProps> = ({
   isCorrect,
@@ -20,7 +15,6 @@ const Option: FC<QuestionOption & TouchableOpacityProps> = ({
   explanation,
   onPress,
 }) => {
-  const isAnwseredCorrectly = isSelected && isCorrect
   const isExplanationVisible = isSelected && Boolean(explanation)
 
   const handleSelect = () => {
@@ -30,21 +24,16 @@ const Option: FC<QuestionOption & TouchableOpacityProps> = ({
 
   return (
     <TouchableOpacity onPress={handleSelect} activeOpacity={0.9}>
-      <StyledOption isCorrect={isCorrect} isSelected={isSelected}>
-        {isAnwseredCorrectly && (
-          <StyledCorrectAnswer>
-            <StyledCorrectAnswerText variant="caption">
-              Correct Answer
-            </StyledCorrectAnswerText>
-          </StyledCorrectAnswer>
-        )}
-        {isAnswered && isCorrect && (
-          <StyledCorrectAnswer>
-            <StyledCorrectAnswerText variant="caption">
-              Correct Answer
-            </StyledCorrectAnswerText>
-          </StyledCorrectAnswer>
-        )}
+      <StyledOption
+        isCorrect={isCorrect}
+        isAnswered={isAnswered}
+        isSelected={isSelected}
+      >
+        <Label
+          isSelected={isSelected}
+          isCorrect={isCorrect}
+          isAnswered={isAnswered}
+        />
         <StyledText>{text}</StyledText>
         {isExplanationVisible && (
           <StyledDescription>

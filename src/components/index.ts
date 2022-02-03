@@ -5,6 +5,7 @@ import CardRandom from './CardRandom'
 import Category from './Category'
 import Close from './Close'
 import Container from './Container'
+import Countdown from './Countdown'
 import Fab from './Fab'
 import Flag from './Flag'
 import Icon from './Icon'
@@ -23,6 +24,7 @@ export {
   Card,
   CardRandom,
   Close,
+  Countdown,
   Fab,
   Flag,
   Icon,

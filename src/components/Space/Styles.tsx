@@ -1,7 +1,5 @@
 import styled from 'styled-components/native'
 
-import { Props } from './index'
-
-export const StyledView = styled.View<Props>`
+export const StyledView = styled.View`
   height: ${({ theme, size }) => theme.spacing[size]};
 `

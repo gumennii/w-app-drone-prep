@@ -14,5 +14,8 @@ export const StyledHeader = styled.View`
 
 export const StyledOptions = styled.View`
   padding: ${({ theme }) => theme.spacing[4]};
-  padding-bottom: 100px;
+`
+
+export const StyledCountdown = styled.View`
+  padding: ${({ theme }) => theme.spacing[6]};
 `

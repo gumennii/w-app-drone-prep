@@ -78,7 +78,7 @@ const theme = {
       h2: '26px',
       h3: '24px',
       h4: '20px',
-      h5: '16px',
+      h5: '22px',
       h6: '14px',
       body1: '20px',
       body2: '20px',

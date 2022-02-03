@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { StyledView } from './Space'
+import { StyledView } from './Styles'
 
 export type Props = {
   size: number

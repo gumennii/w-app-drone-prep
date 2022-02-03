@@ -1,20 +1,27 @@
 import React, { FC, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 
-import { useNavigation, useQuestions } from '../../hooks'
+import { useQuestions } from '../../hooks'
 import { question_db } from '../../data'
 import {
   addStorageArrayValue,
   removeStorageArrayValue,
   KEY_APP_ANSWERS_INCORRECT,
 } from '../../storage'
-import { Container, Text, Option, Space, Fab } from '../../components'
+import {
+  Container,
+  Text,
+  Option,
+  Space,
+  Fab,
+  Countdown,
+} from '../../components'
 
-import { StyledHeader, StyledOptions } from './Styles'
+import { StyledHeader, StyledOptions, StyledCountdown } from './Styles'
 
-const Question: FC = () => {
-  const navigation = useNavigation()
+const Question: FC = ({ route, navigation }) => {
   const { state, dispatch } = useQuestions()
+
   const {
     questions,
     activeQuestionIndex,
@@ -96,6 +103,10 @@ const Question: FC = () => {
           })}
         </StyledOptions>
       </ScrollView>
+
+      <StyledCountdown>
+        {route.params && route.params.countdown && <Countdown />}
+      </StyledCountdown>
 
       {selectedAnswer && !isLastQuestion && (
         <Fab title={buttonLabel} onPress={handleNext} />

@@ -8,9 +8,9 @@ export const StyledOption = styled.View`
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   border: 2px solid ${({ theme }) => theme.color.grey.light};
 
-  ${({ isCorrect, isSelected }) =>
+  ${({ isCorrect, isAnswered }) =>
     isCorrect &&
-    isSelected &&
+    isAnswered &&
     css`
       border: 2px solid ${({ theme }) => theme.color.green.main};
       background-color: ${({ theme }) => theme.color.green.light};
@@ -31,9 +31,18 @@ export const StyledText = styled(Text)`
 
 export const StyledCorrectAnswer = styled.View`
   position: absolute;
-  padding: 2px 4px;
-  border-radius: 4px;
+  padding: 2px ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
   background: ${({ theme }) => theme.color.green.main};
+  top: ${({ theme }) => `-${theme.spacing[2]}`};
+  left: ${({ theme }) => theme.spacing[2]};
+`
+
+export const StyledInCorrectAnswer = styled.View`
+  position: absolute;
+  padding: 2px ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  background: ${({ theme }) => theme.color.error.main};
   top: ${({ theme }) => `-${theme.spacing[2]}`};
   left: ${({ theme }) => theme.spacing[2]};
 `
