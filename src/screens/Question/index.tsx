@@ -55,14 +55,17 @@ const Question: FC = () => {
         KEY_APP_ANSWERS_INCORRECT,
         String(question.id)
       )
+    } else {
+      dispatch({
+        type: 'set_active_question_incorrect_answers',
+        payload: activeQuestionIncorrectAnswers + 1,
+      })
+
+      return addStorageArrayValue(
+        KEY_APP_ANSWERS_INCORRECT,
+        String(question.id)
+      )
     }
-
-    dispatch({
-      type: 'set_active_question_incorrect_answers',
-      payload: activeQuestionIncorrectAnswers + 1,
-    })
-
-    return addStorageArrayValue(KEY_APP_ANSWERS_INCORRECT, String(question.id))
   }
 
   return (

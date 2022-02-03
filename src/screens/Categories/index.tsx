@@ -45,13 +45,14 @@ const Categories = () => {
 
         <StyledCategories>
           {categories_ids.map(item => {
-            const { id, description, group } = category_db[item]
+            const { id, description, questions, group } = category_db[item]
             return (
               <View key={id}>
                 <Category
                   id={id}
                   group={group}
                   description={description}
+                  questions={questions}
                   selected={selectedCategories.includes(id)}
                   onPress={() => handleSelected(id)}
                 />

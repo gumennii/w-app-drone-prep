@@ -19,8 +19,8 @@ import {
 const SessionTypes = () => {
   const navigation = useNavigation()
   const { state, dispatch } = useQuestions()
-  const [questionsMarked, setQuestionsMarked] = useState()
-  const [questionsIncorrect, setQuestionsIncorrect] = useState()
+  const [questionsMarked, setQuestionsMarked] = useState([])
+  const [questionsIncorrect, setQuestionsIncorrect] = useState([])
 
   const { selectedSessionType } = state
 
@@ -47,8 +47,9 @@ const SessionTypes = () => {
   }
 
   const getStorage = async () => {
-    const questionsMarked = await getStorageData(KEY_APP_ANSWERS_MARKED)
-    const questionsIncorrect = await getStorageData(KEY_APP_ANSWERS_INCORRECT)
+    const questionsMarked = (await getStorageData(KEY_APP_ANSWERS_MARKED)) || []
+    const questionsIncorrect =
+      (await getStorageData(KEY_APP_ANSWERS_INCORRECT)) || []
 
     setQuestionsMarked(questionsMarked)
     setQuestionsIncorrect(questionsIncorrect)
@@ -56,10 +57,10 @@ const SessionTypes = () => {
 
   useEffect(() => {
     getStorage()
-  }, [])
+  }, [navigation])
 
-  const isSessionTypeMarkedDisabled = Boolean(!questionsMarked)
-  const isSessionTypeIncorrectDisabled = Boolean(!questionsIncorrect)
+  const isSessionTypeMarkedDisabled = questionsMarked.length === 0
+  const isSessionTypeIncorrectDisabled = questionsIncorrect.length === 0
 
   return (
     <Container>
@@ -93,6 +94,7 @@ const SessionTypes = () => {
             selected={selectedSessionType === 3}
             onPress={() => handleSelected(3)}
             disabled={isSessionTypeMarkedDisabled}
+            questions={questionsMarked.length}
           />
           <Space size={2} />
           <SessionType
@@ -102,6 +104,7 @@ const SessionTypes = () => {
             selected={selectedSessionType === 4}
             onPress={() => handleSelected(4)}
             disabled={isSessionTypeIncorrectDisabled}
+            questions={questionsIncorrect.length}
           />
         </StyledCategories>
       </ScrollView>

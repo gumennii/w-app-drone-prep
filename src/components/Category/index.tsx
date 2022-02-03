@@ -12,11 +12,13 @@ import {
   StyledCategory,
   StyledCategoryMedia,
   StyledCategoryContent,
+  StyledBadge,
+  StyledBadgeText,
 } from './Styles'
 
 export type Props = CategoryType & TouchableHighlightProps
 
-const Category: FC<Props> = ({ description, selected, onPress }) => {
+const Category: FC<Props> = ({ description, questions, selected, onPress }) => {
   const icon = selected ? faCheckSquare : faSquare
   const primaryColors = selected
     ? theme.color.common.white
@@ -35,6 +37,15 @@ const Category: FC<Props> = ({ description, selected, onPress }) => {
           <Text variant="body2" color={primaryColors}>
             {description}
           </Text>
+          <StyledBadge selected={selected}>
+            <StyledBadgeText
+              weight="bold"
+              color="secondary"
+              selected={selected}
+            >
+              {questions}
+            </StyledBadgeText>
+          </StyledBadge>
         </StyledCategoryContent>
       </StyledCategory>
     </TouchableHighlight>

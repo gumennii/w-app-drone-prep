@@ -22,6 +22,7 @@ export type Study = {
   description: string
   icon: IconProp
   selected?: boolean
+  questions?: number
 }
 
 export type Question = {
@@ -49,5 +50,6 @@ export type Category = {
   id: number
   group: number
   description: string
+  questions: number
   selected?: boolean
 }

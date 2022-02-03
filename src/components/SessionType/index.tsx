@@ -11,6 +11,8 @@ import {
   StyledSessionTypeMedia,
   StyledSessionTypeContent,
   StyledIconContainer,
+  StyledBadge,
+  StyledBadgeText,
 } from './Styles'
 
 export type Props = StudyType & TouchableHighlightProps
@@ -26,6 +28,7 @@ const SessionType: FC<Props> = ({
   icon,
   selected,
   disabled,
+  questions,
   onPress,
 }) => {
   const { iconName } = icon
@@ -44,10 +47,8 @@ const SessionType: FC<Props> = ({
     return theme.color.text.secondary
   }
 
-  const handleOnPress = e => {
-    if (disabled) {
-      e.preventDefault()
-    }
+  const handleOnPress = () => {
+    if (disabled) return
 
     return onPress(null)
   }
@@ -65,6 +66,17 @@ const SessionType: FC<Props> = ({
               size={adjustIconSize[iconName] || 20}
               color={getPrimaryStyles()}
             />
+            {questions > 0 && (
+              <StyledBadge selected={selected}>
+                <StyledBadgeText
+                  weight="bold"
+                  color="secondary"
+                  selected={selected}
+                >
+                  {questions}
+                </StyledBadgeText>
+              </StyledBadge>
+            )}
           </StyledIconContainer>
         </StyledSessionTypeMedia>
         <StyledSessionTypeContent>
