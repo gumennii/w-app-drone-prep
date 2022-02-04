@@ -12,6 +12,8 @@ import Icon from './Icon'
 import Option from './Option'
 import Pressable from './Pressable'
 import Progress from './Progress'
+import Question from './Question'
+import QuestionList from './QuestionList'
 import SessionType from './SessionType'
 import Space from './Space'
 import Text from './Text'
@@ -31,6 +33,8 @@ export {
   Option,
   Pressable,
   Progress,
+  Question,
+  QuestionList,
   SessionType,
   Space,
   Text,

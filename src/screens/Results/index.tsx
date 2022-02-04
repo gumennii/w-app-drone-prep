@@ -57,14 +57,14 @@ const Results = () => {
             title="Review Questions"
             description="Review all questions you answered within this practice session."
             icon={faClipboardList}
-            onPress={() => navigation.navigate('SessionTypes')}
+            onPress={() => navigation.navigate('Questions')}
           />
           <Space size={2} />
           <SessionType
             title="Review Missed Questions"
             description="Take a look at questions you answered incorrectly."
             icon={faBomb}
-            onPress={() => navigation.navigate('SessionTypes')}
+            onPress={() => navigation.navigate('Questions')}
           />
           <Space size={2} />
           <Card variant="blue">

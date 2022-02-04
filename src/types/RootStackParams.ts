@@ -5,6 +5,7 @@ export type RootStackParams = {
   Question: {
     countdown?: boolean
   }
+  Questions: undefined
   Random: undefined
   RecurrenceRequirements: undefined
   Results: undefined

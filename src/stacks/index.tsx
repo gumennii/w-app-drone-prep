@@ -8,11 +8,12 @@ import SessionTypes from '../screens/SessionTypes'
 import Categories from '../screens/Categories'
 import Results from '../screens/Results'
 import Question from '../screens/Question'
+import Questions from '../screens/Questions'
 import Random from '../screens/Random'
 import Examination from '../screens/Examination'
 import RecurrenceRequirements from '../screens/RecurrenceRequirements'
 
-import { Back, Progress, Close, Flag } from '../components'
+import { Back, Progress, Close, Flag, QuestionList } from '../components'
 import { useQuestions } from '../hooks'
 
 const Stack = createNativeStackNavigator<RootStackParams>()
@@ -24,7 +25,7 @@ const options = {
 const questionOptions = {
   headerLeft: () => <Close />,
   headerTitle: () => <Progress />,
-  headerRight: () => <Flag />,
+  headerRight: () => <QuestionList />,
 }
 
 const resultsOptions = {
@@ -79,11 +80,12 @@ const Stacks = () => {
         component={Question}
         options={questionOptions}
         listeners={() => ({
-          beforeRemove: () => {
-            dispatch({ type: 'reset' })
-          },
+          // beforeRemove: () => {
+          //   dispatch({ type: 'reset' })
+          // },
         })}
       />
+      <Stack.Screen name="Questions" component={Questions} options={options} />
       <Stack.Screen
         name="Results"
         component={Results}
